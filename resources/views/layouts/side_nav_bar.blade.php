@@ -8,7 +8,7 @@
       <li class="">
          <a href="/">
          <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+         <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
          <span class="pcoded-mcaret"></span>
          </a>
       </li>
@@ -16,14 +16,14 @@
       <li class="pcoded-hasmenu">
          <a href="javascript:void(0)">
          <span class="pcoded-micon"><i class="ti-layers-alt"></i></span>
-         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Categories</span>
+         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Payment Extention</span>
          <span class="pcoded-mcaret"></span>
          </a>
          <ul class="pcoded-submenu">
             <li class=" ">
-               <a href="/">
+               <a href="/allPayment">
                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-               <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">All Category</span>
+               <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">All Payment Extentions</span>
                <span class="pcoded-mcaret"></span>
                </a>
             </li>

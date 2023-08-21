@@ -51,6 +51,16 @@
          <div class="pcoded-inner-content">
          <div class="main-body">
          <div class="page-wrapper">
+            <div class="errors">
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+</div>
+
          <!-- add content -->
          @yield('content')
          <script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.js') }}"></script>

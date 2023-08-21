@@ -12,50 +12,44 @@ class CheckoutController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-        'totalAmount' => 'required|numeric|min:0',
-        'cartItems' => 'required|array|min:1',
-        'cartItems.*.product_id' => 'required', 
-        'cartItems.*.quantity' => 'required|integer|min:1'
-        ]);
-        DB::beginTransaction();
-        try {
-            
-            $existingOrder = Order::where('user_id', Auth::user()->id)
-                ->whereNull('placed_at')
-                ->first();
 
-           
-            if ($existingOrder) {
-                
-                $existingOrder->orderDetails()->delete();
+            $check = $this->quantityCheck($request);
 
-                
-                $existingOrder->total_amount = $request->totalAmount;
-                $existingOrder->save();
-            } else {
-                
+            dd($check);
+        
                 $existingOrder = new Order();
                 $existingOrder->user_id = Auth::user()->id;
-                $existingOrder->total_amount = $request->totalAmount;
+                $existingOrder->total_amount = 0;
                 $existingOrder->status = 'pending';
                 $existingOrder->save();
-            }
 
-            
-            foreach ($request->cartItems as $item) {
+            foreach ($request->product_id as $key => $item) {
                 $orderDetail = new OrderDetail();
                 $orderDetail->order_id = $existingOrder->id;
-                $orderDetail->product_id = $item['product_id'];
-                $orderDetail->quantity = $item['quantity'];
-                $orderDetail->price = $item['price'];
+                $orderDetail->product_id = $item;
+                $orderDetail->quantity = $request['quantity'][$key];
+                $orderDetail->price = $request['price'][$key];
                 $orderDetail->save();
             }
             DB::commit();
             return response()->json(['message' => 'Order placed successfully']);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['error' => 'An error occurred while processing your order'], 500);
+        
+    }
+
+    public function quantityCheck($request){
+if ($request->has('quantity')) {
+    $allZeros = true;
+    foreach ($request->quantity as $quantity) {
+        if ($quantity != 0) {
+            $allZeros = false;
+            break;
         }
     }
+
+    if ($allZeros) {
+        return false;
+    }
+}
+
+}
 }

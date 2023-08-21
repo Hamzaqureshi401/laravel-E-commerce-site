@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.applogin')
 
 @section('content')
 <div class="container">
@@ -44,9 +44,16 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
+
+
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
+
+                                    <p>For Demo<br>
+
+                              <span style="background-color: red;">admin@ecommerce.com<br>12345</span>  
+                            </p>
                                 </div>
                             </div>
                         </div>
