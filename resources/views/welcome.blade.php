@@ -103,14 +103,14 @@
                                  <div class="card-body">
                                     <div class="row">
                                        <div class="col-md-6">
-                                          <input type="radio" name="paymentMethod" id="paypal" {{ $setting->paypal_enabled ? '' : 'disabled' }}>
+                                          <input type="radio" value="Paypal" name="paymentMethod" id="paypal" {{ $setting->paypal_enabled ? '' : 'disabled' }}>
                                           <label for="paypal">Paypal</label>
                                           <img class="me-2" width="45px"
                                              src="https://th.bing.com/th/id/OIP.mSu2j5BkATvkRDlJUDz_PgHaEK?pid=ImgDet&rs=1"
                                              alt="PayPal acceptance mark" />
                                        </div>
                                        <div class="col-md-6">
-                                          <input type="radio" name="paymentMethod" id="paoneer" {{ $setting->payoneer_enabled ? '' : 'disabled' }}>
+                                          <input type="radio" value="Payoneer" name="paymentMethod" id="paoneer" {{ $setting->payoneer_enabled ? '' : 'disabled' }}>
                                           <label for="paoneer">Paoneer</label>
                                           <img class="me-2" width="45px"
                                              src="https://th.bing.com/th/id/OIP.0dO9UHY1GhKluu4CDxXMowHaD3?pid=ImgDet&w=1200&h=627&rs=1"
@@ -139,7 +139,7 @@
                                        </li>
                                     </ul>
                                     <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                    Go to checkout
+                                    Checkout
                                     </button>
                                  </div>
                               </div>

@@ -52,7 +52,10 @@
 
                                     <p>For Demo<br>
 
-                              <span style="background-color: red;">admin@ecommerce.com<br>12345</span>  
+                              <span style="background-color: red;">admin@ecommerce.com<br>12345</span><br>
+                              or
+                              <br>
+                              <span style="background-color: green;">user@ecommerce.com<br>12345</span>  
                             </p>
                                 </div>
                             </div>

@@ -14,13 +14,15 @@ class CheckoutController extends Controller
     {
 
             $check = $this->quantityCheck($request);
-
-            dd($check);
+            if($check == false){
+                 return redirect()->back()->withError('At Least One Product Quantity must be greater then 1');
+            }
         
                 $existingOrder = new Order();
                 $existingOrder->user_id = Auth::user()->id;
-                $existingOrder->total_amount = 0;
                 $existingOrder->status = 'pending';
+                $existingOrder->payment_method = $request->paymentMethod ?? 'Cash on Delivery';
+
                 $existingOrder->save();
 
             foreach ($request->product_id as $key => $item) {
@@ -29,27 +31,23 @@ class CheckoutController extends Controller
                 $orderDetail->product_id = $item;
                 $orderDetail->quantity = $request['quantity'][$key];
                 $orderDetail->price = $request['price'][$key];
-                $orderDetail->save();
+                if($orderDetail->quantity > 0){
+                    $orderDetail->save();
+                }
+                
             }
             DB::commit();
-            return response()->json(['message' => 'Order placed successfully']);
-        
+            return redirect()->back()->withSuccess('Order Saved Success fully!');
     }
 
     public function quantityCheck($request){
-if ($request->has('quantity')) {
-    $allZeros = true;
+    
     foreach ($request->quantity as $quantity) {
-        if ($quantity != 0) {
-            $allZeros = false;
-            break;
-        }
+            if($quantity != 0){
+                return true;
+            } 
     }
-
-    if ($allZeros) {
         return false;
-    }
-}
 
-}
+    }
 }

@@ -86,40 +86,10 @@
                   </li>
                </ul>
             </li> -->
-            <li class="user-profile header-notification">
-               <a href="#!">
-               @if (empty($profile['profile']->img))
-                     <img src="{{ asset('assets/images/2b1ba07a56167735eb206ef0088fa358f90aeb69.png') }}" class="img-radius"  alt="user avatar">
-                     @else
-                  <img src="{{ asset($profile['profile']->img) }}" class="img-radius" style="width: 50px; height: 50px;" alt="user avatar">
-               @endif 
-               <span>{{ $profile['user']->name ?? '--' }}</span>
-
-               <i class="ti-angle-down"></i>
-               </a>
-               <ul class="show-notification profile-notification">
-                  <li>
-                     <a href="#!">
-                     <i class="ti-settings"></i> Settings
-                     </a>
-                  </li>
-                  <li>
-                     <a href="/">
-                     <i class="ti-user"></i> Profile
-                     </a>
-                  </li>
-                  <!-- <li>
-                     <a href="auth-lock-screen.html">
-                     <i class="ti-lock"></i> Lock Screen
-                     </a>
-                  </li> -->
-                  <li>
-                     <a href="/">
-                     <i class="ti-layout-sidebar-left"></i> Logout
-                     </a>
-                  </li>
-               </ul>
-            </li>
+             <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
          </ul>
       </div>
    </div>

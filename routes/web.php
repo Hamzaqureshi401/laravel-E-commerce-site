@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentSettingController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+
 
 
 /*
@@ -21,12 +23,15 @@ Route::get('/', function () {
     return redirect('/login');
 });
 Auth::routes();
-
+Route::middleware(['auth'])->group(function () {
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+ Route::get('/myOrders', [OrderController::class, 'getOrders'])->name('my,Orders');
+ Route::post('/storeOrder', [CheckoutController::class, 'store'])->name('store.Order');
+});
+    
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/allPayment', [PaymentSettingController::class, 'allPayment'])->name('allPayment');
     Route::get('/updatePayment/{id?}', [PaymentSettingController::class, 'updatePayment'])->name('update.payment');
-    Route::post('/storeOrder', [CheckoutController::class, 'store'])->name('store.Order');
     
-
+   
 });

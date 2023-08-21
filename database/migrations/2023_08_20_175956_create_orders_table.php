@@ -11,10 +11,9 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); // New user_id column
-            $table->decimal('total_amount', 10, 2);
+            $table->string('payment_method');
             $table->string('status')->default('pending');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
